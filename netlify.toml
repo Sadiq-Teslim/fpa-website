@@ -1,0 +1,150 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_PUBLIC_SITE_URL = "https://fairplayafrica.com"
+
+# Next.js plugin for Netlify
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Redirects for SPA routing and SEO
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/features"
+  to = "/#offers"
+  status = 301
+
+[[redirects]]
+  from = "/how-it-works"
+  to = "/#how-it-works"
+  status = 301
+
+[[redirects]]
+  from = "/demo"
+  to = "/#demo"
+  status = 301
+
+[[redirects]]
+  from = "/team"
+  to = "/about#team"
+  status = 301
+
+[[redirects]]
+  from = "/story"
+  to = "/about#story"
+  status = 301
+
+[[redirects]]
+  from = "/partnership"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/partner"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/terms"
+  to = "/privacy#terms"
+  status = 301
+
+[[redirects]]
+  from = "/terms-of-use"
+  to = "/privacy#terms"
+  status = 301
+
+[[redirects]]
+  from = "/refund"
+  to = "/privacy#refund"
+  status = 301
+
+[[redirects]]
+  from = "/refund-policy"
+  to = "/privacy#refund"
+  status = 301
+
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/privacy"
+  status = 301
+
+[[redirects]]
+  from = "/contact-us"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/get-started"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/signup"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/sign-up"
+  to = "/contact"
+  status = 301
+
+# API routes (future use)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Custom headers for security and caching
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/icon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/logo.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Handle trailing slashes
+[[redirects]]
+  from = "/:path/"
+  to = "/:path"
+  status = 301
+
+# 404 fallback
+[[redirects]]
+  from = "/*"
+  to = "/404"
+  status = 404
