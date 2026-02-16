@@ -12,7 +12,10 @@ import {
   Scale,
   ChevronLeft,
   ChevronRight,
+  ShieldAlert,
+  Sparkles,
 } from 'lucide-react';
+import Image from 'next/image';
 import { Section, SectionHeader } from '@/shared/ui/section';
 import { Button } from '@/shared/ui/button';
 import { cn } from '@/shared/lib/utils';
@@ -26,6 +29,7 @@ interface Audience {
   solution: string;
   relevance: string;
   gradient: string;
+  accentColor: string;
 }
 
 const audiences: Audience[] = [
@@ -40,6 +44,7 @@ const audiences: Audience[] = [
     relevance:
       'As an indie filmmaker, every view counts. We make sure your hard work pays off.',
     gradient: 'from-teal-500 to-emerald-500',
+    accentColor: 'teal',
   },
   {
     id: 'nollywood',
@@ -52,6 +57,7 @@ const audiences: Audience[] = [
     relevance:
       'Built by Africans who understand the unique distribution challenges of Nollywood.',
     gradient: 'from-orange-500 to-amber-500',
+    accentColor: 'orange',
   },
   {
     id: 'studios',
@@ -64,6 +70,7 @@ const audiences: Audience[] = [
     relevance:
       'Enterprise-grade protection at a price point designed for African studios.',
     gradient: 'from-purple-500 to-violet-500',
+    accentColor: 'purple',
   },
   {
     id: 'creators',
@@ -76,6 +83,7 @@ const audiences: Audience[] = [
     relevance:
       'Whether you make content for YouTube, TikTok, or online courses, your work deserves protection.',
     gradient: 'from-cyan-500 to-blue-500',
+    accentColor: 'cyan',
   },
   {
     id: 'distributors',
@@ -88,6 +96,7 @@ const audiences: Audience[] = [
     relevance:
       'Protect the value of your catalog and ensure licensees meet their obligations.',
     gradient: 'from-rose-500 to-pink-500',
+    accentColor: 'rose',
   },
 ];
 
@@ -122,11 +131,25 @@ export function AudienceSection() {
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-teal-500/5 rounded-full blur-[100px]" />
+
+        {/* Large centered africa map watermark */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[700px]">
+          <Image
+            src="/africa-map.png"
+            alt=""
+            fill
+            className="object-contain opacity-[0.03]"
+            style={{
+              filter: 'brightness(1.5) sepia(1) hue-rotate(130deg) saturate(2)',
+              maskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 65%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 65%)',
+            }}
+          />
+        </div>
       </div>
 
       <div className="relative z-10">
         <SectionHeader
-          subtitle="Who It's For"
           title="Built for African Creators"
           description="No matter where you are in your creative journey, FairPlay Africa has your back."
         />
@@ -135,70 +158,122 @@ export function AudienceSection() {
         <div className="relative">
           <div ref={emblaRef} className="overflow-hidden">
             <div className="flex">
-              {audiences.map((audience, index) => (
-                <div
-                  key={audience.id}
-                  className="flex-none w-full md:w-[80%] lg:w-[60%] px-4"
-                >
-                  <motion.div
-                    initial={{ opacity: 0.5, scale: 0.95 }}
-                    animate={{
-                      opacity: selectedIndex === index ? 1 : 0.5,
-                      scale: selectedIndex === index ? 1 : 0.95,
-                    }}
-                    transition={{ duration: 0.4 }}
-                    className={cn(
-                      'rounded-3xl p-8 md:p-10 h-full',
-                      'bg-gradient-to-br from-slate-800/60 to-slate-900/60',
-                      'backdrop-blur-sm border border-slate-700/30',
-                      selectedIndex === index && 'border-slate-600/50'
-                    )}
+              {audiences.map((audience, index) => {
+                const isActive = selectedIndex === index;
+                return (
+                  <div
+                    key={audience.id}
+                    className="flex-none w-full md:w-[80%] lg:w-[60%] px-4"
                   >
-                    {/* Icon */}
-                    <div
-                      className={cn(
-                        'inline-flex p-4 rounded-2xl mb-6',
-                        'bg-gradient-to-br',
-                        audience.gradient
-                      )}
+                    <motion.div
+                      initial={{ opacity: 0.5, scale: 0.95 }}
+                      animate={{
+                        opacity: isActive ? 1 : 0.4,
+                        scale: isActive ? 1 : 0.93,
+                      }}
+                      transition={{ duration: 0.4 }}
+                      className="relative overflow-hidden rounded-3xl h-full"
                     >
-                      <audience.icon className="w-8 h-8 text-white" />
-                    </div>
+                      {/* Gradient top accent bar */}
+                      <div
+                        className={cn(
+                          'absolute top-0 left-0 right-0 h-1',
+                          'bg-gradient-to-r',
+                          audience.gradient,
+                          isActive ? 'opacity-100' : 'opacity-0',
+                          'transition-opacity duration-500'
+                        )}
+                      />
 
-                    {/* Title */}
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
-                      {audience.title}
-                    </h3>
+                      {/* Card body */}
+                      <div
+                        className={cn(
+                          'relative p-8 md:p-10 h-full',
+                          'bg-gradient-to-br from-slate-800/80 to-slate-900/80',
+                          'backdrop-blur-sm border border-slate-700/30',
+                          isActive && 'border-slate-600/50'
+                        )}
+                      >
+                        {/* Africa map watermark — small, tucked in corner */}
+                        <div className="absolute -bottom-2 -right-2 w-28 h-32 opacity-[0.05] pointer-events-none">
+                          <Image
+                            src="/africa-map.png"
+                            alt=""
+                            fill
+                            className="object-contain"
+                            style={{
+                              filter: 'brightness(3) grayscale(1)',
+                            }}
+                          />
+                        </div>
 
-                    {/* Content */}
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="text-sm font-semibold text-red-400 uppercase tracking-wider mb-2">
-                          Your Pain Point
-                        </h4>
-                        <p className="text-gray-300 leading-relaxed">
-                          {audience.painPoint}
-                        </p>
+                        <div className="relative z-10">
+                          {/* Header: icon + title */}
+                          <div className="flex items-start gap-5 mb-8">
+                            <div
+                              className={cn(
+                                'shrink-0 p-4 rounded-2xl',
+                                'bg-gradient-to-br',
+                                audience.gradient,
+                                'shadow-lg'
+                              )}
+                            >
+                              <audience.icon className="w-7 h-7 text-white" />
+                            </div>
+                            <div>
+                              <h3 className="text-xl md:text-2xl font-bold text-white">
+                                {audience.title}
+                              </h3>
+                            </div>
+                          </div>
+
+                          {/* Two-column content on larger screens */}
+                          <div className="grid md:grid-cols-2 gap-6">
+                            {/* Pain point */}
+                            <div className="rounded-2xl bg-red-500/5 border border-red-500/10 p-5">
+                              <div className="flex items-center gap-2 mb-3">
+                                <ShieldAlert className="w-4 h-4 text-red-400" />
+                                <h4 className="text-sm font-semibold text-red-400 uppercase tracking-wider">
+                                  The Challenge
+                                </h4>
+                              </div>
+                              <p className="text-gray-300 text-sm leading-relaxed">
+                                {audience.painPoint}
+                              </p>
+                            </div>
+
+                            {/* Solution */}
+                            <div className="rounded-2xl bg-teal-500/5 border border-teal-500/10 p-5">
+                              <div className="flex items-center gap-2 mb-3">
+                                <Sparkles className="w-4 h-4 text-teal-400" />
+                                <h4 className="text-sm font-semibold text-teal-400 uppercase tracking-wider">
+                                  How FairPlay Helps
+                                </h4>
+                              </div>
+                              <p className="text-gray-300 text-sm leading-relaxed">
+                                {audience.solution}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Relevance quote */}
+                          <div className="mt-6 flex items-start gap-3 pt-5 border-t border-slate-700/40">
+                            <div
+                              className={cn(
+                                'shrink-0 w-1 h-full min-h-[2rem] rounded-full bg-gradient-to-b',
+                                audience.gradient
+                              )}
+                            />
+                            <p className="text-gray-400 italic text-sm leading-relaxed">
+                              &ldquo;{audience.relevance}&rdquo;
+                            </p>
+                          </div>
+                        </div>
                       </div>
-
-                      <div>
-                        <h4 className="text-sm font-semibold text-teal-400 uppercase tracking-wider mb-2">
-                          How FairPlay Helps
-                        </h4>
-                        <p className="text-gray-300 leading-relaxed">
-                          {audience.solution}
-                        </p>
-                      </div>
-
-                      <div className="pt-4 border-t border-slate-700/50">
-                        <p className="text-gray-400 italic">
-                          &ldquo;{audience.relevance}&rdquo;
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              ))}
+                    </motion.div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 

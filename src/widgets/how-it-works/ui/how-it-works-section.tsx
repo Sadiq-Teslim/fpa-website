@@ -109,7 +109,6 @@ export function HowItWorksSection() {
 
       <div className="relative z-10">
         <SectionHeader
-          subtitle="Process"
           title="How FairPlay Africa Works"
           description="A simple, streamlined process designed to protect your content with minimal effort on your part."
         />
@@ -121,7 +120,7 @@ export function HowItWorksSection() {
               <motion.button
                 onClick={() => setSelectedStep(step)}
                 onMouseEnter={() => setActiveIndex(index)}
-                className="w-full text-left group"
+                className="w-full h-full text-left group"
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.3 }}
               >

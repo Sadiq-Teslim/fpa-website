@@ -87,11 +87,25 @@ export function AboutSection() {
       <Section id="story" className="bg-slate-950 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/4 right-0 w-96 h-96 bg-teal-500/5 rounded-full blur-[100px]" />
+
+          {/* Africa map - left side, teal tint, fading to the right */}
+          <div className="absolute -left-16 top-1/2 -translate-y-1/2 w-[450px] h-[550px]">
+            <Image
+              src="/africa-map.png"
+              alt=""
+              fill
+              className="object-contain opacity-[0.04]"
+              style={{
+                filter: 'brightness(1.5) sepia(1) hue-rotate(130deg) saturate(3)',
+                maskImage: 'linear-gradient(to right, black 10%, transparent 70%)',
+                WebkitMaskImage: 'linear-gradient(to right, black 10%, transparent 70%)',
+              }}
+            />
+          </div>
         </div>
 
         <div className="relative z-10">
           <SectionHeader
-            subtitle="Our Story"
             title="Born from the Africa Creative Market Hackathon"
           />
 
@@ -249,7 +263,6 @@ export function AboutSection() {
 
         <div className="relative z-10">
           <SectionHeader
-            subtitle="Team"
             title="Meet the Team"
             description="A passionate team dedicated to protecting African creativity."
           />

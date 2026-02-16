@@ -27,7 +27,7 @@ export function Section({
   return (
     <Component
       id={id}
-      className={cn('py-20 md:py-28 lg:py-32', className)}
+      className={cn('py-16 md:py-20 lg:py-24', className)}
       {...(animate && {
         initial: 'hidden',
         whileInView: 'visible',
@@ -44,7 +44,6 @@ export function Section({
 
 interface SectionHeaderProps {
   title: string;
-  subtitle?: string;
   description?: string;
   align?: 'left' | 'center';
   className?: string;
@@ -53,7 +52,6 @@ interface SectionHeaderProps {
 
 export function SectionHeader({
   title,
-  subtitle,
   description,
   align = 'center',
   className,
@@ -64,22 +62,17 @@ export function SectionHeader({
   return (
     <Wrapper
       className={cn(
-        'mb-12 md:mb-16 lg:mb-20',
+        'mb-10 md:mb-12 lg:mb-16',
         align === 'center' && 'text-center',
         className
       )}
       {...(animate && { variants: fadeInUp })}
     >
-      {subtitle && (
-        <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-teal-500/10 text-teal-400 text-sm font-medium border border-teal-500/20">
-          {subtitle}
-        </span>
-      )}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight tracking-tight">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 md:mt-6 text-lg md:text-xl text-gray-400 max-w-3xl leading-relaxed mx-auto">
+        <p className="mt-4 md:mt-6 text-base md:text-lg text-gray-400 max-w-3xl leading-relaxed mx-auto">
           {description}
         </p>
       )}

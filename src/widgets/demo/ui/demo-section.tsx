@@ -54,7 +54,6 @@ export function DemoSection() {
 
       <div className="relative z-10">
         <SectionHeader
-          subtitle="Product Demo"
           title="See How FairPlay Africa Works"
           description="Watch our platform in action and discover how we protect your creative work from piracy."
         />

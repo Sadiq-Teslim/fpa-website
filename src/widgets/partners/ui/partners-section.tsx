@@ -144,7 +144,6 @@ export function PartnersSection() {
 
         <div className="relative z-10">
           <SectionHeader
-            subtitle="Benefits"
             title="Why Partner With FairPlay?"
             align="center"
           />
@@ -185,7 +184,6 @@ export function PartnersSection() {
 
         <div className="relative z-10">
           <SectionHeader
-            subtitle="Who We're Looking For"
             title="Our Ideal Partners"
             align="center"
           />
@@ -216,7 +214,6 @@ export function PartnersSection() {
 
         <div className="relative z-10">
           <SectionHeader
-            subtitle="Process"
             title="How to Partner With Us"
             align="center"
           />

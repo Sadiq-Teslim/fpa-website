@@ -140,7 +140,6 @@ export function OffersSection() {
 
       <div className="relative z-10">
         <SectionHeader
-          subtitle="Features"
           title="What We Offer"
           description="Comprehensive tools designed specifically for African content creators to protect and monetize their work."
         />

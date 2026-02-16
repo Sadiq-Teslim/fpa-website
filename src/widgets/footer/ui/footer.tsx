@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Twitter, Instagram, Linkedin, Mail, ArrowRight } from 'lucide-react';
+import { Twitter, Instagram, Linkedin, ArrowRight } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { siteConfig } from '@/shared/config/site';
@@ -23,6 +23,21 @@ export function Footer() {
     <footer className="relative bg-slate-950 border-t border-slate-800/50">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-teal-950/20 to-transparent pointer-events-none" />
+
+      {/* Africa map watermark - bottom right corner */}
+      <div className="absolute bottom-0 right-0 w-[350px] h-[420px] pointer-events-none">
+        <Image
+          src="/africa-map.png"
+          alt=""
+          fill
+          className="object-contain opacity-[0.025]"
+          style={{
+            filter: 'brightness(1.5) sepia(1) hue-rotate(130deg) saturate(2)',
+            maskImage: 'linear-gradient(to top left, black 5%, transparent 60%)',
+            WebkitMaskImage: 'linear-gradient(to top left, black 5%, transparent 60%)',
+          }}
+        />
+      </div>
 
       <motion.div
         initial="hidden"
@@ -164,9 +179,7 @@ export function Footer() {
             &copy; {currentYear} FairPlay Africa. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-sm text-gray-500">
-            <span>Built with</span>
-            <span className="text-red-500">&#10084;</span>
-            <span>for African creators</span>
+            <span>Built by Team Alpha</span>
           </div>
         </motion.div>
       </motion.div>

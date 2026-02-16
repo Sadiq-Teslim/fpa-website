@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Play, ArrowRight, Shield, Eye, TrendingUp } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
@@ -59,21 +60,55 @@ export function Hero() {
         />
       </div>
 
-      {/* Africa Map SVG Background */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-[0.03]">
-        <motion.svg
+      {/* Africa Map Background - Layered for depth */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        {/* Primary map - large, centered, teal-tinted glow */}
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, ease: 'easeOut' }}
-          viewBox="0 0 400 450"
-          className="w-[600px] h-[700px]"
-          fill="currentColor"
+          transition={{ duration: 2.5, ease: 'easeOut' }}
+          className="absolute inset-0 flex items-center justify-center"
         >
-          <path
-            d="M200 20 L220 40 L240 35 L270 50 L290 45 L310 60 L330 55 L350 75 L360 100 L355 130 L365 160 L360 190 L370 220 L365 250 L355 280 L360 310 L350 340 L330 360 L310 380 L280 390 L250 400 L220 410 L200 420 L180 410 L150 400 L120 390 L90 380 L70 360 L50 340 L40 310 L45 280 L35 250 L40 220 L30 190 L40 160 L35 130 L45 100 L50 75 L70 55 L90 60 L110 45 L130 50 L160 35 L180 40 Z"
-            className="text-teal-500"
-          />
-        </motion.svg>
+          <div className="relative w-[500px] h-[600px] sm:w-[600px] sm:h-[700px] lg:w-[700px] lg:h-[800px]">
+            {/* Teal glow behind the map */}
+            <div className="absolute inset-0 bg-teal-500/[0.07] rounded-full blur-[80px] scale-75" />
+            <Image
+              src="/africa-map.png"
+              alt=""
+              fill
+              className="object-contain opacity-[0.06] mix-blend-screen"
+              style={{
+                filter: 'brightness(1.5) sepia(1) hue-rotate(130deg) saturate(3)',
+                maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%)',
+              }}
+              priority
+            />
+          </div>
+        </motion.div>
+
+        {/* Secondary map - subtle, slightly offset, for parallax depth */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 3, delay: 0.5 }}
+          style={{ y }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <div className="relative w-[800px] h-[900px] translate-x-8 translate-y-12">
+            <Image
+              src="/africa-map.png"
+              alt=""
+              fill
+              className="object-contain opacity-[0.02]"
+              style={{
+                filter: 'brightness(2) sepia(1) hue-rotate(30deg) saturate(2)',
+                maskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 65%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 65%)',
+              }}
+            />
+          </div>
+        </motion.div>
       </div>
 
       {/* Main Content */}

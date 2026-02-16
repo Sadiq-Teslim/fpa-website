@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
-import { Button } from '@/shared/ui/button';
 import { siteConfig } from '@/shared/config/site';
 
 export function Header() {
@@ -71,16 +70,6 @@ export function Header() {
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
-            <Button variant="ghost" size="sm">
-              Sign In
-            </Button>
-            <Button size="sm">
-              Get Started
-            </Button>
-          </div>
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -141,19 +130,6 @@ export function Header() {
                   </Link>
                 </motion.div>
               ))}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: siteConfig.navigation.length * 0.05 }}
-                className="pt-4 space-y-3"
-              >
-                <Button variant="secondary" className="w-full">
-                  Sign In
-                </Button>
-                <Button className="w-full">
-                  Get Started
-                </Button>
-              </motion.div>
             </div>
           </motion.div>
         )}

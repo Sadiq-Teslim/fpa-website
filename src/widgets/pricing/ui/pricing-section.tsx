@@ -91,7 +91,6 @@ export function PricingSection() {
 
       <div className="relative z-10">
         <SectionHeader
-          subtitle="Pricing"
           title="Simple, Transparent Pricing"
           description="Choose a plan that fits your needs. Pricing is based on duration of monitoring and number of platforms tracked."
         />

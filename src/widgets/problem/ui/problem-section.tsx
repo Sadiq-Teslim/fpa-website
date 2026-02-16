@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { AlertTriangle, Clock, DollarSign, Globe } from 'lucide-react';
 import { Section, SectionHeader } from '@/shared/ui/section';
@@ -41,11 +42,25 @@ export function ProblemSection() {
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-0 w-72 h-72 bg-red-500/5 rounded-full blur-[100px]" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/5 rounded-full blur-[100px]" />
+
+        {/* Africa map silhouette - right side, red-tinted to match warning theme */}
+        <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-[400px] h-[500px] lg:w-[500px] lg:h-[600px]">
+          <Image
+            src="/africa-map.png"
+            alt=""
+            fill
+            className="object-contain opacity-[0.04]"
+            style={{
+              filter: 'brightness(1.5) sepia(1) hue-rotate(0deg) saturate(3)',
+              maskImage: 'linear-gradient(to left, black 10%, transparent 70%)',
+              WebkitMaskImage: 'linear-gradient(to left, black 10%, transparent 70%)',
+            }}
+          />
+        </div>
       </div>
 
       <div className="relative z-10">
         <SectionHeader
-          subtitle="The Problem"
           title="Piracy is Africa's biggest silent distribution channel."
           description="While creators pour their hearts into their work, pirates distribute it for free. The current system is broken."
         />
@@ -88,10 +103,10 @@ export function ProblemSection() {
 
         {/* Call to action text */}
         <motion.div variants={fadeInUp} className="mt-16 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-slate-800/50 border border-slate-700/50">
-            <AlertTriangle className="w-5 h-5 text-orange-400" />
-            <p className="text-gray-300">
-              <span className="font-semibold text-white">It&apos;s time for change.</span>{' '}
+          <div className="inline-flex items-center gap-4 px-8 py-4 rounded-2xl bg-slate-800/50 border border-slate-700/50">
+            <AlertTriangle className="w-6 h-6 text-orange-400 shrink-0" />
+            <p className="text-lg md:text-xl text-gray-300">
+              <span className="font-bold text-white">It&apos;s time for change.</span>{' '}
               African creators deserve better.
             </p>
           </div>
