@@ -279,7 +279,7 @@ export function PartnersSection() {
                 </Button>
                 <Button variant="secondary" size="lg" className="gap-2">
                   <Mail className="w-5 h-5" />
-                  partnerships@fairplayafrica.com
+                  partnerships@fairplay.africa
                 </Button>
               </div>
             </div>

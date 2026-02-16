@@ -1,19 +1,22 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Twitter, Instagram, Linkedin, ArrowRight } from 'lucide-react';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { siteConfig } from '@/shared/config/site';
-import { fadeInUp, staggerContainer, viewportConfig } from '@/shared/lib/animations';
+import * as React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { Twitter, Instagram, Linkedin } from "lucide-react";
+import { siteConfig } from "@/shared/config/site";
+import {
+  fadeInUp,
+  staggerContainer,
+  viewportConfig,
+} from "@/shared/lib/animations";
+import { NewsletterForm } from "@/features/newsletter";
 
 const socialLinks = [
-  { name: 'Twitter', href: siteConfig.links.twitter, icon: Twitter },
-  { name: 'Instagram', href: siteConfig.links.instagram, icon: Instagram },
-  { name: 'LinkedIn', href: siteConfig.links.linkedin, icon: Linkedin },
+  { name: "Twitter", href: siteConfig.links.twitter, icon: Twitter },
+  { name: "Instagram", href: siteConfig.links.instagram, icon: Instagram },
+  { name: "LinkedIn", href: siteConfig.links.linkedin, icon: Linkedin },
 ];
 
 export function Footer() {
@@ -32,9 +35,11 @@ export function Footer() {
           fill
           className="object-contain opacity-[0.025]"
           style={{
-            filter: 'brightness(1.5) sepia(1) hue-rotate(130deg) saturate(2)',
-            maskImage: 'linear-gradient(to top left, black 5%, transparent 60%)',
-            WebkitMaskImage: 'linear-gradient(to top left, black 5%, transparent 60%)',
+            filter: "brightness(1.5) sepia(1) hue-rotate(130deg) saturate(2)",
+            maskImage:
+              "linear-gradient(to top left, black 5%, transparent 60%)",
+            WebkitMaskImage:
+              "linear-gradient(to top left, black 5%, transparent 60%)",
           }}
         />
       </div>
@@ -57,19 +62,12 @@ export function Footer() {
                 Stay in the loop
               </h3>
               <p className="text-gray-400">
-                Get updates on product launches, early access, and piracy protection insights.
+                Get updates on product launches, early access, and piracy
+                protection insights.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 max-w-md w-full lg:w-auto">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1"
-              />
-              <Button className="shrink-0 gap-2">
-                Subscribe
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+              <NewsletterForm source="footer" />
             </div>
           </div>
         </motion.div>
@@ -78,7 +76,10 @@ export function Footer() {
         <div className="py-12 md:py-16">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
             {/* Brand Column */}
-            <motion.div variants={fadeInUp} className="col-span-2 lg:col-span-2">
+            <motion.div
+              variants={fadeInUp}
+              className="col-span-2 lg:col-span-2"
+            >
               <Link href="/" className="flex items-center gap-3 mb-6">
                 <Image
                   src="/logo.png"
@@ -89,11 +90,14 @@ export function Footer() {
                 />
                 <div>
                   <span className="text-lg font-bold text-white">FairPlay</span>
-                  <span className="text-lg font-bold text-teal-400 ml-1">Africa</span>
+                  <span className="text-lg font-bold text-teal-400 ml-1">
+                    Africa
+                  </span>
                 </div>
               </Link>
               <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
-                Protecting African creativity from piracy. Built by Africans, for Africa.
+                Protecting African creativity from piracy. Built by Africans,
+                for Africa.
               </p>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (

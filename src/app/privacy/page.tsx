@@ -132,10 +132,10 @@ export default function PrivacyPage() {
                   <p>
                     For refund requests or questions about our policies, email us at{' '}
                     <a
-                      href="mailto:support@fairplayafrica.com"
+                      href="mailto:support@fairplay.africa"
                       className="text-teal-400 hover:text-teal-300"
                     >
-                      support@fairplayafrica.com
+                      support@fairplay.africa
                     </a>
                   </p>
                 </div>

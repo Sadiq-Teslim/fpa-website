@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://fairplayafrica.com/sitemap.xml
+Sitemap: https://fairplay.africa/sitemap.xml
 
 # Disallow admin and API routes
 Disallow: /api/

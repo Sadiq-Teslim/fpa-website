@@ -5,6 +5,7 @@ import { env } from "./config/env";
 
 // Infrastructure
 import { SupabaseJobRepository } from "./infrastructure/repositories/supabase-job-repository";
+import { SupabaseSubscriberRepository } from "./infrastructure/repositories/supabase-subscriber-repository";
 
 // Application (Use Cases)
 import {
@@ -15,15 +16,24 @@ import {
   UpdateJobUseCase,
   DeleteJobUseCase,
   ToggleJobStatusUseCase,
+  SubscribeUseCase,
+  GetAllSubscribersUseCase,
+  GetSubscriberCountUseCase,
+  UnsubscribeUseCase,
 } from "./application";
 
 // Presentation
 import { JobController } from "./presentation/controllers/job-controller";
 import { createJobRoutes } from "./presentation/routes/job-routes";
+import { SubscriberController } from "./presentation/controllers/subscriber-controller";
+import { createSubscriberRoutes } from "./presentation/routes/subscriber-routes";
+import { AuthController } from "./presentation/controllers/auth-controller";
+import { createAuthRoutes } from "./presentation/routes/auth-routes";
 import { errorHandler } from "./presentation/middleware/error-handler";
 
 // ── Dependency Injection ────────────────────────────────────
 const jobRepository = new SupabaseJobRepository();
+const subscriberRepository = new SupabaseSubscriberRepository();
 
 const jobController = new JobController(
   new GetAllJobsUseCase(jobRepository),
@@ -34,6 +44,15 @@ const jobController = new JobController(
   new DeleteJobUseCase(jobRepository),
   new ToggleJobStatusUseCase(jobRepository),
 );
+
+const subscriberController = new SubscriberController(
+  new SubscribeUseCase(subscriberRepository),
+  new GetAllSubscribersUseCase(subscriberRepository),
+  new GetSubscriberCountUseCase(subscriberRepository),
+  new UnsubscribeUseCase(subscriberRepository),
+);
+
+const authController = new AuthController();
 
 // ── Express App ─────────────────────────────────────────────
 const app = express();
@@ -48,6 +67,12 @@ app.get("/api/health", (_req, res) => {
 
 // Job routes
 app.use("/api/jobs", createJobRoutes(jobController));
+
+// Subscriber routes
+app.use("/api/subscribers", createSubscriberRoutes(subscriberController));
+
+// Auth routes
+app.use("/api/auth", createAuthRoutes(authController));
 
 // Error handler (must be last)
 app.use(errorHandler);

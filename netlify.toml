@@ -4,7 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  NEXT_PUBLIC_SITE_URL = "https://fairplayafrica.com"
+  NEXT_PUBLIC_SITE_URL = "https://fairplay.africa"
 
 # Next.js plugin for Netlify
 [[plugins]]

@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.fairplayafrica.com",
+        hostname: "**.fairplay.africa",
       },
     ],
   },

@@ -23,19 +23,19 @@ const contactTypes = [
   {
     icon: MessageSquare,
     title: 'General Inquiries',
-    email: 'hello@fairplayafrica.com',
+    email: 'hello@fairplay.africa',
     description: 'Questions about FairPlay Africa or our services',
   },
   {
     icon: Building,
     title: 'Partnership Inquiries',
-    email: 'partnerships@fairplayafrica.com',
+    email: 'partnerships@fairplay.africa',
     description: 'Interested in partnering with us',
   },
   {
     icon: Newspaper,
     title: 'Media & Press',
-    email: 'press@fairplayafrica.com',
+    email: 'press@fairplay.africa',
     description: 'Press inquiries and media requests',
   },
 ];

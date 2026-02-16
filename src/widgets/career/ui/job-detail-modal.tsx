@@ -107,7 +107,9 @@ export function JobDetailModal({
 
           {/* Apply CTA */}
           <div className="mt-8 pt-6 border-t border-slate-700/50">
-            <a href={`mailto:careers@fairplay.africa?subject=Application: ${job.title}`}>
+            <a
+              href={`mailto:careers@fairplay.africa?subject=Application: ${job.title}`}
+            >
               <Button size="lg" className="w-full sm:w-auto gap-2">
                 Apply for this role
                 <ArrowUpRight className="w-4 h-4" />

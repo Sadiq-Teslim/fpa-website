@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Protecting African Creativity",
   description:
     "FairPlay Africa helps filmmakers and content creators track, detect, and reduce piracy while opening ethical pathways to monetize distribution. Built by Africans, for Africa.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://fairplayafrica.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://fairplay.africa",
   ogImage: "/og-image.png",
   logo: "/logo.png",
   links: {
@@ -11,7 +11,7 @@ export const siteConfig = {
     instagram: "https://instagram.com/fairplayafrica",
     linkedin: "https://linkedin.com/company/fairplayafrica",
   },
-  email: "hello@fairplayafrica.com",
+  email: "hello@fairplay.africa",
   navigation: [
     { name: "Home", href: "/" },
     { name: "What We Offer", href: "/#offers" },
